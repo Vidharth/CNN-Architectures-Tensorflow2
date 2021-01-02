@@ -59,7 +59,7 @@ class Inception_V4(object):
 
         branch_1 = self.convolution_normalization_activation(input, 192, (1, 1), (1, 1), "same")
         branch_1 = self.convolution_normalization_activation(branch_1, 224, (1, 7), (1, 1), "same")
-        branch_1 = self.convolution_normalization_activation(branch_1, 256, (7, 1), (1, 1), "same")
+        branch_1 = self.convolution_normalization_activation(branch_1, 256, (1, 7), (1, 1), "same")
 
         branch_2 = self.convolution_normalization_activation(input, 192, (1, 1), (1, 1), "same")
         branch_2 = self.convolution_normalization_activation(branch_2, 192, (1, 7), (1, 1), "same")
@@ -100,8 +100,8 @@ class Inception_V4(object):
         branch_2 = self.convolution_normalization_activation(input, 384, (1, 1), (1, 1), "same")
         branch_2 = self.convolution_normalization_activation(branch_2, 448, (1, 3), (1, 1), "same")
         branch_2 = self.convolution_normalization_activation(branch_2, 512, (3, 1), (1, 1), "same")
-        branch_2_a = self.convolution_normalization_activation(branch_1, 256, (1, 3), (1, 1), "same")
-        branch_2_b = self.convolution_normalization_activation(branch_1, 256, (3, 1), (1, 1), "same")
+        branch_2_a = self.convolution_normalization_activation(branch_2, 256, (1, 3), (1, 1), "same")
+        branch_2_b = self.convolution_normalization_activation(branch_2, 256, (3, 1), (1, 1), "same")
         branch_2 = concatenate([branch_2_a, branch_2_b])
 
         branch_3 = AveragePooling2D(pool_size=(3, 3), strides=(1, 1), padding="same")(input)
